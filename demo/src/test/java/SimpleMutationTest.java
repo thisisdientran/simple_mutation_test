@@ -1,7 +1,8 @@
-package demo.Mutations;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.Mutations.Mutations;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
