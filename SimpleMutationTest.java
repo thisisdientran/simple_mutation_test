@@ -2,19 +2,14 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import com.Mutations.Mutations;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
-// make sure to use junit 4
 public class SimpleMutationTest {
     // We use this variable to capture "System.out" output.
-    // Your tests will each run separately, each with their own instance
-    // of a `SimpleMutationTest` object
     // thus, we don't need to worry about resetting theirOut in between tests
     private final ByteArrayOutputStream theirOut = new ByteArrayOutputStream();
 
@@ -50,8 +45,46 @@ public class SimpleMutationTest {
         // with what the program actually outputted (which is contained inside
         // the theirOut variable)
         assertEquals(outputString, theirOut.toString());
-    }
+    };
 
     // TODO: You should add AT LEAST ONE new test of your own
     // -5 points if you do not
+
+    @Test
+    public void test2() {
+        String inputString = "1\n" + "hello world\n" + "hellu\n";
+        String outputString = "hello world\n" + "hellu      \n" + "....*.*****\n\n";
+        System.setIn(new ByteArrayInputStream(inputString.getBytes()));
+        Mutations.find();
+        assertEquals(outputString, theirOut.toString());
+    };
+
+    @Test
+    public void test3() {
+        String inputString = "10\n" 
+                            + "abc\n" + "abc\n" 
+                            + "abc\n" + "abd\n" 
+                            + "abc\n" + "abf\n" 
+                            + "abc\n" + "abg\n" 
+                            + "abc\n" + "abh\n"
+                            + "abc\n" + "abc\n" 
+                            + "abc\n" + "abd\n" 
+                            + "abc\n" + "abf\n" 
+                            + "abc\n" + "abg\n" 
+                            + "abc\n" + "abh\n";
+
+        String outputString = "abc\n" + "abc\n" + "...\n\n" 
+                            + "abc\n" + "abd\n" + "..*\n\n" 
+                            + "abc\n" + "abf\n" + "..*\n\n" 
+                            + "abc\n" + "abg\n" + "..*\n\n" 
+                            + "abc\n" + "abh\n" + "..*\n\n"
+                            + "abc\n" + "abc\n" + "...\n\n" 
+                            + "abc\n" + "abd\n" + "..*\n\n" 
+                            + "abc\n" + "abf\n" + "..*\n\n" 
+                            + "abc\n" + "abg\n" + "..*\n\n" 
+                            + "abc\n" + "abh\n" + "..*\n\n";
+        System.setIn(new ByteArrayInputStream(inputString.getBytes()));
+        Mutations.find();
+        assertEquals(outputString, theirOut.toString());
+     };
 }
